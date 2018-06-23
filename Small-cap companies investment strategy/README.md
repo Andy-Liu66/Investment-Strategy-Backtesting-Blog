@@ -71,5 +71,6 @@ We can find that portfolios formed by smallest market value companies perform ve
 
 Another finding is that portfolios formed by small market value stocks tend to have small trade volume (missing requirement of least trade volume) or companies even closed during backtesting. On the other hand, portfolios formed by no matter small or big price-to-book ratio companies all tend to have small trade volume (missing requirement of least trade volume) or companies even closed during backtesting. But how is the proportion between “small trade volume” and “companies closed” that led to low performance on above situation remain further research (because of the way I wrote the code, I didn’t save all trading records, so I can’t figure it out).
 ## Feed Back:
-The code and data are provided in the link below: https://goo.gl/NH95Uw, reader can play around with it. If you have any comment, please email me at: andy566159@gmail.com
+The code and data are provided in this repository, readers can play around with it. If you have any comment, please email me at: andy566159@gmail.com
+
 Thanks for reading.
