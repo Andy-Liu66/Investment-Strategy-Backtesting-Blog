@@ -1,3 +1,4 @@
+import pandas as pd
 import numpy as np
 from arch.unitroot import ADF
 from scipy import odr
@@ -42,9 +43,9 @@ def test_is_tradable(stock_1, stock_2, alpha=0.05):
         if residual_ADF_test_result.pvalue >= alpha:
             pass
         else:
-            trade_parameter = pd.concat([[
+            trade_parameter = pd.DataFrame([[
                 TLS_result.beta[0], TLS_result.beta[1],
-                np.std(residual), residual_ADF_test_result.pvalue
+                np.std(residual), residual_ADF_test_result.stat
             ]], columns=[
                 'hedge_ratio', 'intercept',
                 'sigma', 'ADF_statistic'
