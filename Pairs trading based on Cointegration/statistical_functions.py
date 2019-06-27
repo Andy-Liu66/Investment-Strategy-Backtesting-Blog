@@ -4,9 +4,24 @@ from arch.unitroot import ADF
 from scipy import odr
 
 
+def preprocess(stock_1, stock_2):
+    stock_1 = stock_1.copy()
+    stock_2 = stock_2.copy()
+    stock_1.dropna(inplace=True)
+    stock_2.dropna(inplace=True)
+    date_index = stock_1.merge(stock_2, on='date')['date']
+    stock_1 = stock_1[stock_1.date.isin(date_index)]
+    stock_1.reset_index(inplace=True, drop=True)
+    stock_1.sort_values(by='date', inplace=True)
+    stock_2 = stock_2[stock_2.date.isin(date_index)]
+    stock_2.reset_index(inplace=True, drop=True)
+    stock_2.sort_values(by='date', inplace=True)
+    return stock_1, stock_2
+
+
 def test_is_I1(price, alpha=0.05):
-    adf_price = ADF(np.log(price))
-    adf_return = ADF(np.diff(np.log(price)))
+    adf_price = ADF(price)
+    adf_return = ADF(np.diff(price))
     adf_price_is_pass = adf_price.pvalue < alpha
     adf_return_is_pass = adf_return.pvalue < alpha
     if (adf_price_is_pass == False) and (adf_return_is_pass == True):
